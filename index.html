@@ -4,17 +4,26 @@
     <meta charset="UTF-8">
     <title>Lucky Jet</title>
 
+    <!-- Указываем базовый путь (если ты используешь GitHub Pages) -->
     <base href="https://xlaswad.github.io/telegram-webapp222/">
 
-    <!-- Можно попробовать убрать "https://xlaswad.github.io/telegram-webapp222/" и использовать относительный  
-         после base все пути уже будут правильно резолвиться -->
     <link rel="stylesheet" href="mainpan.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="container">
         <img src="photolucky.jpg" alt="Lucky Jet" class="game-image">
-        <a href="textfile.html" class="play-button">ИГРАТЬ</a>
+
+        <!-- Кнопка, не ссылка -->
+        <button class="play-button" onclick="goToGame()">ИГРАТЬ</button>
     </div>
+
+    <script>
+        function goToGame() {
+            // JavaScript переход на игру
+            window.location.href = "textfile.html";
+        }
+    </script>
 </body>
 </html>
 
