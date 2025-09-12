@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Космический Сайт</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+
+<div class="circle-container">
+    <div class="circle">
+        <div class="multiplier" id="multiplier">1.00X</div>
+    </div>
+    <button class="generate-btn" onclick="generateMultiplier()">GET SIGNAL</button>
+</div>
+
+<div class="content">
+    <h1></h1>
+    <p></p>
+</div>
+
+<script>
+    // Telegram WebApp Init
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // раскрыть на весь экран
+
+    function generateMultiplier() {
+        const multiplierElement = document.getElementById('multiplier');
+        const randomValue = (Math.random() * 2 + 1).toFixed(2); // от 1.00 до 3.00
+        multiplierElement.textContent = randomValue + "X";
+    }
+</script>
+
+</body>
+</html>
+
+
