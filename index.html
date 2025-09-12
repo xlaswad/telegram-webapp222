@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Lucky Jet</title>
 
-    <!-- Указываем базовый путь (если ты используешь GitHub Pages) -->
+    <!-- base нужен, если используешь GitHub Pages -->
     <base href="https://xlaswad.github.io/telegram-webapp222/">
 
     <link rel="stylesheet" href="mainpan.css">
@@ -12,16 +12,25 @@
 </head>
 <body>
     <div class="container">
+        <!-- Первая игра -->
         <img src="photolucky.jpg" alt="Lucky Jet" class="game-image">
-
-        <!-- Кнопка, не ссылка -->
         <button class="play-button" onclick="goToGame()">ИГРАТЬ</button>
+
+        <!-- Вторая игра -->
+        <img src="minesphoto.png" alt="Mines Game" class="game-image">
+        <button class="play-button" onclick="goToSecondGame()">ИГРАТЬ</button>
     </div>
 
     <script>
         function goToGame() {
-            // JavaScript переход на игру
+            // Переход на первую игру
             window.location.href = "textfile.html";
+        }
+
+        function goToSecondGame() {
+            // Здесь можно позже вставить путь ко второй игре
+            // Пример: window.location.href = "minesgame.html";
+            alert("Ссылка на вторую игру пока не указана");
         }
     </script>
 </body>
