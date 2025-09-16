@@ -13,7 +13,7 @@ html, body {
 }
 
 body {
-    background: url('/telegram-webapp222/pic/space-background.png') repeat;
+    background: url('space-background.png') repeat;
     background-size: cover;
     animation: moveBackground 60s linear infinite;
     color: white;
@@ -33,7 +33,7 @@ body {
     }
 }
 
-/* Кнопка назад */
+/* Кнопка "Назад" */
 .back-button {
     position: absolute;
     top: 20px;
@@ -57,7 +57,7 @@ body {
     height: 60px;
 }
 
-/* Центрированный блок */
+/* Основной блок */
 .circle-container {
     position: absolute;
     top: 50%;
@@ -112,7 +112,7 @@ body {
     color: black;
 }
 
-/* Заголовок */
+/* Заголовок "LUCKYJET" */
 .logo-centered {
     font-size: 36px;
     font-weight: bold;
