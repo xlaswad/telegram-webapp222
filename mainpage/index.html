@@ -5,26 +5,26 @@
     <title>Lucky Jet</title>
 
     <!-- base нужен, если используешь GitHub Pages -->
-    <base href="https://xlaswad.github.io/telegram-webapp222/mainpage">
+    <base href="https://xlaswad.github.io/telegram-webapp222">
 
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="mainpage/mainpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="container">
         <!-- Первая игра -->
-        <img src="../pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
+        <img src="/pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
         <button class="play-button" onclick="goToGame()">ИГРАТЬ</button>
 
         <!-- Вторая игра -->
-        <img src="../pic/minesphoto.png" alt="Mines Game" class="game-image">
+        <img src="/pic/minesphoto.png" alt="Mines Game" class="game-image">
         <button class="play-button" onclick="goToSecondGame()">ИГРАТЬ</button>
     </div>
 
     <script>
         function goToGame() {
             // Переход на первую игру
-            window.location.href = "../luckyjett/luckyj.html";
+            window.location.href = "luckyjett/luckyj.html";
         }
 
         function goToSecondGame() {
