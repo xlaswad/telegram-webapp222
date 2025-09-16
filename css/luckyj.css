@@ -13,7 +13,7 @@ html, body {
 }
 
 body {
-    background: url('/telegram-webapp222/pic/space-background.png') repeat;
+    background: url('pic/space-background.png') repeat;
     background-size: cover;
     animation: moveBackground 60s linear infinite;
     color: white;
