@@ -28,15 +28,38 @@
 </div>
 
 <script>
-    // Telegram WebApp Init
-    const tg = window.Telegram.WebApp;
-    tg.expand();
+    const plane = document.getElementById("plane");
+    const result = document.getElementById("result");
 
-    function generateMultiplier() {
-        const multiplierElement = document.getElementById('multiplier');
-        const randomValue = (Math.random() * 2 + 1).toFixed(2);
-        multiplierElement.textContent = randomValue + "X";
+    function startRound() {
+        result.textContent = "";
+        plane.classList.remove("crash", "fly");
+        
+        // Запускаем взлёт
+        setTimeout(() => {
+            plane.classList.add("fly");
+
+            // Случайный исход через 5-8 секунд
+            const duration = Math.random() * 3000 + 5000;
+            setTimeout(() => {
+                plane.classList.remove("fly");
+
+                if (Math.random() > 0.5) {
+                    result.textContent = "WIN!";
+                    result.className = "result win";
+                } else {
+                    plane.classList.add("crash");
+                    result.textContent = "CRASH!";
+                    result.className = "result crash";
+                }
+            }, duration);
+
+        }, 100);
     }
+
+    // Запуск раунда каждые 15 секунд
+    startRound();
+    setInterval(startRound, 15000);
 </script>
 
 </body>
