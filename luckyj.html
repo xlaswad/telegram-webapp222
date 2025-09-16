@@ -35,102 +35,17 @@
 </div>
 
 <script>
-    // Telegram WebApp Init (безопасный вызов)
-    try {
-        const tg = window.Telegram.WebApp;
-        tg.expand && tg.expand();
-    } catch (e) { /* ignore */ }
+    // Telegram WebApp Init
+    const tg = window.Telegram.WebApp;
+    tg.expand();
 
-    // Функция генерации множителя (как в твоём коде)
     function generateMultiplier() {
+        function generateMultiplier() {
         const multiplierElement = document.getElementById('multiplier');
         const randomValue = (Math.random() * 2 + 1).toFixed(2);
         multiplierElement.textContent = randomValue + "X";
-        return parseFloat(randomValue); // возвращаем число
     }
 
-    // Анимация числа от 0 до target за duration (ms)
-    function animateNumberTo(element, target, duration) {
-        return new Promise((resolve) => {
-            const start = performance.now();
-            const startValue = 0;
-            function easeOutQuad(t) { return t*(2-t); }
-
-            function step(now) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = easeOutQuad(progress);
-                const current = startValue + (target - startValue) * eased;
-                element.textContent = current.toFixed(2) + "X";
-
-                if (progress < 1) {
-                    requestAnimationFrame(step);
-                } else {
-                    element.textContent = target.toFixed(2) + "X";
-                    resolve();
-                }
-            }
-            requestAnimationFrame(step);
-        });
-    }
-
-    let cycleRunning = false;
-
-    async function startRound() {
-        if (cycleRunning) return;
-        cycleRunning = true;
-
-        const multiplierEl = document.getElementById('multiplier');
-        const plane = document.getElementById('plane');
-        const cooldownEl = document.getElementById('cooldown');
-
-        // Генерация множителя
-        const target = generateMultiplier();
-        multiplierEl.textContent = "0.00X"; // сбрасываем для анимации
-        cooldownEl.textContent = "";
-
-        // Длительность полёта / анимации
-        const flightDuration = 5000; // 5 секунд
-        plane.style.setProperty('--flight-duration', (flightDuration/1000) + 's');
-
-        // сброс состояния
-        plane.classList.remove('fly');
-        void plane.offsetWidth; // сброс анимации
-
-        // параллельная анимация числа и полёта
-        const numberPromise = animateNumberTo(multiplierEl, target, flightDuration);
-        const planePromise = new Promise((resolve) => {
-            function onAnimEnd() {
-                plane.removeEventListener('animationend', onAnimEnd);
-                resolve();
-            }
-            plane.addEventListener('animationend', onAnimEnd);
-            plane.classList.add('fly');
-        });
-
-        await Promise.all([numberPromise, planePromise]);
-
-        multiplierEl.textContent = target.toFixed(2) + "X";
-
-        // отсчёт 15 секунд
-        let remaining = 15;
-        cooldownEl.textContent = "Следующий запуск через " + remaining + "s";
-
-        const cdInterval = setInterval(() => {
-            remaining -= 1;
-            if (remaining <= 0) {
-                clearInterval(cdInterval);
-                cooldownEl.textContent = "";
-                cycleRunning = false;
-                startRound(); // следующий раунд
-            } else {
-                cooldownEl.textContent = "Следующий запуск через " + remaining + "s";
-            }
-        }, 1000);
-    }
-
-    // старт сразу при загрузке
-    startRound();
 </script>
 
 </body>
