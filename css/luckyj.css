@@ -4,6 +4,64 @@
     padding: 0;
     box-sizing: border-box;
 }
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.plane {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 48px;
+    transition: transform 0.3s ease;
+}
+
+.plane.fly {
+    animation: flyUp 6s linear forwards;
+}
+
+.plane.crash {
+    animation: crashAnim 1s ease forwards;
+}
+
+@keyframes flyUp {
+    from { bottom: 0; }
+    to { bottom: 100%; }
+}
+
+@keyframes crashAnim {
+    0% { transform: translateX(-50%) scale(1) rotate(0deg); }
+    50% { transform: translateX(-50%) scale(1.5) rotate(90deg); color: red; }
+    100% { opacity: 0; transform: translateX(-50%) scale(0); }
+}
+
+.result {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.result.win {
+    color: limegreen;
+}
+
+.result.crash {
+    color: red;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 html, body {
     width: 100%;
