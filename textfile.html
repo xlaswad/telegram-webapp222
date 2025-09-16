@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Космический Сайт</title>
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
-
 <body>
 
+<!-- Кнопка "Назад" -->
+<a href="index.html" class="back-button" title="Назад">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="12" fill="#3A4750"/>
+        <path d="M13.5 16.5L9 12L13.5 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</a>
+
+<!-- Основной блок -->
 <div class="circle-container">
-    <!-- Кнопка Назад -->
-    <a href="index.html" class="back-button" title="Назад">&#8592;</a>
-
-    <!-- Логотип -->
     <div class="logo-centered">LUCKY<span>JET</span></div>
-
-    <!-- Круг с множителем -->
     <div class="circle">
         <div class="multiplier" id="multiplier">1.00X</div>
     </div>
-
-    <!-- Кнопка генерации -->
     <button class="generate-btn" onclick="generateMultiplier()">GET SIGNAL</button>
 </div>
 
 <script>
+    // Telegram WebApp Init
     const tg = window.Telegram.WebApp;
     tg.expand();
 
