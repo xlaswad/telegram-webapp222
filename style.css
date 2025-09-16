@@ -33,6 +33,30 @@ body {
     }
 }
 
+/* Кнопка "Назад" */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.back-button svg {
+    display: block;
+}
+
+/* Центрированный блок */
 .circle-container {
     position: absolute;
     top: 50%;
@@ -44,6 +68,7 @@ body {
     gap: 20px;
 }
 
+/* Круг */
 .circle {
     width: 220px;
     height: 220px;
@@ -58,10 +83,7 @@ body {
     overflow: hidden;
 }
 
-.circle::before {
-    content: none; /* убираем затемнение или чёрный круг */
-}
-
+/* Текст множителя */
 .multiplier {
     font-size: 36px;
     font-weight: bold;
@@ -69,9 +91,9 @@ body {
     font-style: italic;
     position: relative;
     z-index: 2;
-    background: transparent;
 }
 
+/* Кнопка "GET SIGNAL" */
 .generate-btn {
     padding: 12px 30px;
     background: transparent;
@@ -89,6 +111,7 @@ body {
     color: black;
 }
 
+/* Заголовок */
 .logo-centered {
     font-size: 36px;
     font-weight: bold;
@@ -103,25 +126,4 @@ body {
     color: white;
 }
 
-/* Кнопка Назад */
-.back-button {
-    position: absolute;
-    top: -60px;      /* выше логотипа */
-    left: -100px;    /* левее центра */
-    font-size: 26px;
-    color: white;
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 6px 12px;
-    border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    transition: background 0.3s, transform 0.3s;
-    z-index: 9999;
-}
-
-.back-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
-}
 
