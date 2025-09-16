@@ -19,19 +19,12 @@
     </svg>
 </a>
 
-<!-- Игровая зона -->
-<div class="game-area">
-    <div class="sky">
-        <div id="plane" class="plane">✈</div>
+<div class="circle-container">
+    <div class="logo-centered">LUCKY<span>JET</span></div>
+    <div class="circle">
+        <div class="multiplier" id="multiplier">1.00X</div>
     </div>
-
-    <div class="hud">
-        <!-- Множитель -->
-        <div id="multiplier" class="multiplier">0.00X</div>
-
-        <!-- Отсчёт между раундами -->
-        <div id="cooldown" class="cooldown"></div>
-    </div>
+    <button class="generate-btn" onclick="generateMultiplier()">GET SIGNAL</button>
 </div>
 
 <script>
