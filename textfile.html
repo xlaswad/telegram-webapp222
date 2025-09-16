@@ -10,6 +10,11 @@
 
 <body>
 
+<!-- Кнопка "Назад" -->
+<a href="index.html" class="back-button" title="Назад">
+    &#8592;
+</a>
+
 <div class="circle-container">
     <div class="logo-centered">LUCKY<span>JET</span></div>
     <div class="circle">
@@ -24,7 +29,7 @@
 
     function generateMultiplier() {
         const multiplierElement = document.getElementById('multiplier');
-        const randomValue = (Math.random() * 2 + 1).toFixed(2); // от 1.00 до 3.00
+        const randomValue = (Math.random() * 2 + 1).toFixed(2);
         multiplierElement.textContent = randomValue + "X";
     }
 </script>
