@@ -33,6 +33,7 @@ body {
     }
 }
 
+/* Кнопка назад */
 .back-button {
     position: absolute;
     top: 20px;
@@ -53,7 +54,8 @@ body {
 
 .back-button svg {
     width: 60px;
-    height:
+    height: 60px;
+}
 
 /* Центрированный блок */
 .circle-container {
@@ -124,6 +126,5 @@ body {
 .logo-centered span {
     color: white;
 }
-
 
 
