@@ -1,68 +1,137 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <base href="https://xlaswad.github.io/telegram-webapp222">
     <meta charset="UTF-8">
-    <title>Космический Сайт</title>
+    <title>Lucky Jett</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/telegram-webapp222/css/luckyj.css">
+    <base href="https://xlaswad.github.io/telegram-webapp222">
+    <link rel="stylesheet" href="luckyjett/luckyj.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
 
 <!-- Кнопка "Назад" -->
-<a href="/telegram-webapp222/index.html" class="back-button" title="Назад">
+<a href="/mainpage/index.html" class="back-button" title="Назад">
     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="12" fill="#3A4750"/>
-        <path d="M13.5 16.5L9 12L13.5 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 8 L8 12 L12 16" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M16 12 H8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     </svg>
 </a>
 
-<!-- Основной блок -->
-<div class="circle-container">
-    <div class="logo-centered">LUCKY<span>JET</span></div>
-    <div class="circle">
-        <div class="multiplier" id="multiplier">1.00X</div>
+<!-- Игровая зона -->
+<div class="game-area">
+    <div class="sky">
+        <div id="plane" class="plane">✈</div>
     </div>
-    <button class="generate-btn" onclick="generateMultiplier()">GET SIGNAL</button>
+
+    <div class="hud">
+        <!-- Множитель -->
+        <div id="multiplier" class="multiplier">0.00X</div>
+
+        <!-- Отсчёт между раундами -->
+        <div id="cooldown" class="cooldown"></div>
+    </div>
 </div>
 
 <script>
-    const plane = document.getElementById("plane");
-    const result = document.getElementById("result");
+    // Telegram WebApp Init (безопасный вызов)
+    try {
+        const tg = window.Telegram.WebApp;
+        tg.expand && tg.expand();
+    } catch (e) { /* ignore */ }
 
-    function startRound() {
-        result.textContent = "";
-        plane.classList.remove("crash", "fly");
-        
-        // Запускаем взлёт
-        setTimeout(() => {
-            plane.classList.add("fly");
-
-            // Случайный исход через 5-8 секунд
-            const duration = Math.random() * 3000 + 5000;
-            setTimeout(() => {
-                plane.classList.remove("fly");
-
-                if (Math.random() > 0.5) {
-                    result.textContent = "WIN!";
-                    result.className = "result win";
-                } else {
-                    plane.classList.add("crash");
-                    result.textContent = "CRASH!";
-                    result.className = "result crash";
-                }
-            }, duration);
-
-        }, 100);
+    // Функция генерации множителя (как в твоём коде)
+    function generateMultiplier() {
+        const multiplierElement = document.getElementById('multiplier');
+        const randomValue = (Math.random() * 2 + 1).toFixed(2);
+        multiplierElement.textContent = randomValue + "X";
+        return parseFloat(randomValue); // возвращаем число
     }
 
-    // Запуск раунда каждые 15 секунд
+    // Анимация числа от 0 до target за duration (ms)
+    function animateNumberTo(element, target, duration) {
+        return new Promise((resolve) => {
+            const start = performance.now();
+            const startValue = 0;
+            function easeOutQuad(t) { return t*(2-t); }
+
+            function step(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = easeOutQuad(progress);
+                const current = startValue + (target - startValue) * eased;
+                element.textContent = current.toFixed(2) + "X";
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    element.textContent = target.toFixed(2) + "X";
+                    resolve();
+                }
+            }
+            requestAnimationFrame(step);
+        });
+    }
+
+    let cycleRunning = false;
+
+    async function startRound() {
+        if (cycleRunning) return;
+        cycleRunning = true;
+
+        const multiplierEl = document.getElementById('multiplier');
+        const plane = document.getElementById('plane');
+        const cooldownEl = document.getElementById('cooldown');
+
+        // Генерация множителя
+        const target = generateMultiplier();
+        multiplierEl.textContent = "0.00X"; // сбрасываем для анимации
+        cooldownEl.textContent = "";
+
+        // Длительность полёта / анимации
+        const flightDuration = 5000; // 5 секунд
+        plane.style.setProperty('--flight-duration', (flightDuration/1000) + 's');
+
+        // сброс состояния
+        plane.classList.remove('fly');
+        void plane.offsetWidth; // сброс анимации
+
+        // параллельная анимация числа и полёта
+        const numberPromise = animateNumberTo(multiplierEl, target, flightDuration);
+        const planePromise = new Promise((resolve) => {
+            function onAnimEnd() {
+                plane.removeEventListener('animationend', onAnimEnd);
+                resolve();
+            }
+            plane.addEventListener('animationend', onAnimEnd);
+            plane.classList.add('fly');
+        });
+
+        await Promise.all([numberPromise, planePromise]);
+
+        multiplierEl.textContent = target.toFixed(2) + "X";
+
+        // отсчёт 15 секунд
+        let remaining = 15;
+        cooldownEl.textContent = "Следующий запуск через " + remaining + "s";
+
+        const cdInterval = setInterval(() => {
+            remaining -= 1;
+            if (remaining <= 0) {
+                clearInterval(cdInterval);
+                cooldownEl.textContent = "";
+                cycleRunning = false;
+                startRound(); // следующий раунд
+            } else {
+                cooldownEl.textContent = "Следующий запуск через " + remaining + "s";
+            }
+        }, 1000);
+    }
+
+    // старт сразу при загрузке
     startRound();
-    setInterval(startRound, 15000);
 </script>
 
 </body>
 </html>
-
-
