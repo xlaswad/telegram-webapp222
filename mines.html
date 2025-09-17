@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Mines</title>
+  <base href="https://xlaswad.github.io/telegram-webapp222">
+  <link rel="stylesheet" href="/telegram-webapp222/css/mines.css">
+
+</head>
+<body>
+  <a href="/telegram-webapp222/index.html" class="back-button" title="Назад">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="12" fill="#3A4750"/>
+          <path d="M13.5 16.5L9 12L13.5 7.5"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+      </svg>
+  </a>
+  <h1>Mines</h1>
+  <div class="grid-wrapper">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="controls">
+    <label>
+      Ловушки:
+      <select id="minesSelect">
+        <option value="1">1</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+      </select>
+    </label>
+    <button id="playBtn">Играть</button>
+  </div>
+
+  <script>
+    const gridEl = document.getElementById("grid");
+    const playBtn = document.getElementById("playBtn");
+    const minesSelect = document.getElementById("minesSelect");
+
+    let cells = [];
+    let isPlaying = false;
+    let timer;
+
+    // SVG с мягким свечением вокруг звезды
+    const starSVG = `
+    <svg width="42" height="42" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad" x1="0" y1="0" x2="0" y2="24" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFD95A"/>
+          <stop offset="1" stop-color="#FBA416"/>
+        </linearGradient>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.2 22 12 18.56 5.8 22 7 14.14 2 9.27l7.1-1.01L12 2z"
+            fill="url(#grad)" filter="url(#glow)"/>
+    </svg>
+    `;
+
+    function createGrid() {
+      gridEl.innerHTML = "";
+      cells = [];
+      for (let i = 0; i < 25; i++) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        gridEl.appendChild(cell);
+        cells.push(cell);
+      }
+    }
+
+    function getStarsCount(mines) {
+      switch (mines) {
+        case 1: return 10;
+        case 3: return 5;
+        case 5: return 4;
+        case 7: return 3;
+        default: return 0;
+      }
+    }
+
+    function startGame() {
+      const mineCount = parseInt(minesSelect.value);
+      const starCount = getStarsCount(mineCount);
+
+      createGrid();
+
+      const starIndexes = new Set();
+      while (starIndexes.size < starCount) {
+        starIndexes.add(Math.floor(Math.random() * 25));
+      }
+
+      let delay = 0;
+      cells.forEach((cell, index) => {
+        if (starIndexes.has(index)) {
+          setTimeout(() => {
+            cell.classList.add("star");
+            cell.innerHTML = starSVG;
+          }, delay);
+          delay += 200;
+        }
+      });
+
+      startTimer();
+    }
+
+    function startTimer() {
+      isPlaying = true;
+      playBtn.disabled = true;
+      let timeLeft = 15;
+      playBtn.textContent = `Играть (${timeLeft})`;
+
+      timer = setInterval(() => {
+        timeLeft--;
+        playBtn.textContent = `Играть (${timeLeft})`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          playBtn.disabled = false;
+          playBtn.textContent = "Играть";
+          isPlaying = false;
+        }
+      }, 1000);
+    }
+
+    playBtn.addEventListener("click", () => {
+      if (!isPlaying) {
+        startGame();
+      }
+    });
+
+    createGrid();
+  </script>
+</body>
+</html>
