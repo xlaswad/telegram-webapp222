@@ -18,13 +18,15 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(5, 70px);
-  grid-gap: 12px;
+  grid-template-columns: repeat(5, 1fr); /* равномерно делим ширину */
+  gap: 8px;
+  width: 100%;
+  max-width: 95vw; /* чтобы точно влезало */
 }
 
 .cell {
-  width: 70px;
-  height: 70px;
+  aspect-ratio: 1 / 1;   /* квадратные ячейки */
+  width: 100%;           /* растягиваются по колонке */
   border-radius: 12px;
   background: linear-gradient(145deg, #2bbec7, #0d7ea3);
   box-shadow:
@@ -35,6 +37,11 @@ body {
   justify-content: center;
   transition: transform 0.25s ease, background 0.25s ease;
   cursor: pointer;
+}
+
+.cell svg {
+  width: 60%;
+  height: 60%;
 }
 
 .cell.star {
