@@ -1,21 +1,4 @@
 
-/* --- AUTOMATIC RESPONSIVE FIXES (added by assistant) --- */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
-  overflow-x: hidden; /* временная мера; удалите, если клиппинг нежелателен */
-}
-*, *::before, *::after { box-sizing: inherit; }
-img, picture, video, canvas, iframe { max-width: 100%; height: auto; display: block; }
-/* Replace width:100vw with width:100% in CSS where appropriate */
-/* Use media queries to adapt large fixed widths on small screens. */
-/* --- END FIXES --- */
-
-
-
 body {
   background: #0b0f1a;
   font-family: Arial, sans-serif;
@@ -25,7 +8,7 @@ body {
   align-items: center;
   justify-content: center;
   max-height: 850px;
-  width: 100%; max-width: 800px;
+  max-width: 800px;
 }
 
 .grid-wrapper {
@@ -52,8 +35,8 @@ body {
 }
 
 .cell {
-  width: 70px;
-  height: 70px;
+  
+  
   border-radius: 12px;
   background: linear-gradient(145deg, #2bbec7, #0d7ea3);
   box-shadow:
@@ -72,8 +55,8 @@ body {
 }
 
 .cell svg {
-  width: 42px;
-  height: 42px;
+  
+  
   animation: pop 0.3s ease-out;
 }
 
@@ -118,3 +101,28 @@ select {
   background: #444;
   cursor: not-allowed;
 }
+
+
+
+/* --- ADAPTIVE GRID FIX --- */
+#grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell svg {
+  width: 60%;
+  height: auto;
+}
+/* --- END ADAPTIVE GRID FIX --- */
