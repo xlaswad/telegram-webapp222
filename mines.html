@@ -66,19 +66,16 @@
             fill="url(#grad)" filter="url(#glow)"/>
     </svg>
     `;
-    
-    function createGrid(withMines = true) {
-      const grid = document.getElementById("grid");
-      grid.innerHTML = "";
 
+    function createGrid() {
+      gridEl.innerHTML = "";
+      cells = [];
       for (let i = 0; i < 25; i++) {
-          const cell = document.createElement("div");
-          cell.classList.add("cell");
-          }
-      if (withMines) {
-          gridEl.appendChild(cell);
-          cells.push(cell);
-          }
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        gridEl.appendChild(cell);
+        cells.push(cell);
+      }
     }
 
     function getStarsCount(mines) {
@@ -140,10 +137,7 @@
       }
     });
 
-    //createGrid();
-    window.addEventListener("load", () => {
-    createGrid(false); // при старте пустая сетка без мин
-  });
+    createGrid();
   </script>
 </body>
   
