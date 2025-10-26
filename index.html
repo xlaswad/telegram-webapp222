@@ -2,77 +2,36 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Игры</title>
+    <title>Lucky Jet</title>
+
+    <!-- base нужен, если используешь GitHub Pages -->
+    <base href="https://xlaswad.github.io/telegram-webapp222">
+
+    <link rel="stylesheet" href="/telegram-webapp222/css/mainpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="mainpage.css">
 </head>
 <body>
-    <div class="background">
-        <span></span>
-        <span></span>
-    </div>
+    <div class="container">
+        <!-- Первая игра -->
+        <img src="/telegram-webapp222/pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
+        <button class="play-button" onclick="goToGame()">ИГРАТЬ</button>
 
-    <div class="games">
-        <div class="game-card">
-            <img src="pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
-            <button class="play-button" onclick="goToGame()">ИГРАТЬ</button>
-        </div>
-
-        <div class="game-card">
-            <img src="pic/minesphoto.png" alt="Mines" class="game-image">
-            <button class="play-button" onclick="goToSecondGame()">ИГРАТЬ</button>
-        </div>
+        <!-- Вторая игра -->
+        <img src="/telegram-webapp222/pic/minesphoto.png" alt="Mines Game" class="game-image">
+        <button class="play-button" onclick="goToSecondGame()">ИГРАТЬ</button>
     </div>
 
     <script>
         function goToGame() {
-            window.location.href = "luckyj.html";
+            // Переход на первую игру
+            window.location.href = "/telegram-webapp222/luckyj.html";
         }
+
         function goToSecondGame() {
-            window.location.href = "mines.html";
+            // Здесь можно позже вставить путь ко второй игре
+            window.location.href = "/telegram-webapp222/mines.html";
         }
-
-        // === Динамические фигуры на фоне ===
-        const bg = document.querySelector('.background');
-        const colors = ['#ff00ff', '#a000ff', '#00ffff', '#ff0099', '#ff6600'];
-        const shapes = [
-            'circle(50%)',
-            'polygon(50% 0%, 100% 100%, 0% 100%)',
-            'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-            'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)'
-        ];
-
-        function createShape() {
-            const el = document.createElement('div');
-            el.classList.add('shape');
-            const size = Math.random() * 80 + 30 + 'px';
-            el.style.position = 'absolute';
-            el.style.top = '100%';
-            el.style.setProperty('--size', size);
-            el.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
-            el.style.setProperty('--shape', shapes[Math.floor(Math.random() * shapes.length)]);
-            el.style.left = Math.random() * 100 + '%';
-            el.style.width = size;
-            el.style.height = size;
-            el.style.background = el.style.getPropertyValue('--color');
-            el.style.clipPath = el.style.getPropertyValue('--shape');
-            el.style.opacity = '0.8';
-            el.style.filter = `drop-shadow(0 0 10px ${el.style.getPropertyValue('--color')})`;
-            el.style.transition = 'transform 10s linear, opacity 10s linear';
-            bg.appendChild(el);
-            
-            // Запуск анимации
-            requestAnimationFrame(() => {
-                el.style.transform = `translateY(-120vh) rotate(${Math.random() * 360}deg)`;
-                el.style.opacity = '0';
-            });
-
-            setTimeout(() => el.remove(), 10000);
-        }
-
-        setInterval(createShape, 600);
     </script>
 </body>
 </html>
-
 
