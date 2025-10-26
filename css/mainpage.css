@@ -1,57 +1,78 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     font-family: 'Poppins', Arial, sans-serif;
     height: 100vh;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at 50% 50%, #2a0060, #100025 80%);
+    background: #150030;
 }
 
-/* === Геометрический фиолетовый фон === */
-body::before {
-    content: "";
+/* ===== Геометрический фиолетовый фон ===== */
+.background {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 120%;
-    height: 120%;
+    inset: 0;
     z-index: 0;
-    background:
-        linear-gradient(125deg, rgba(255, 0, 255, 0.08) 25%, transparent 25%) -50px 0,
-        linear-gradient(235deg, rgba(255, 0, 255, 0.08) 25%, transparent 25%) -50px 0,
-        linear-gradient(325deg, rgba(255, 0, 255, 0.08) 25%, transparent 25%) -50px 0,
-        linear-gradient(45deg, rgba(255, 0, 255, 0.08) 25%, transparent 25%) -50px 0;
-    background-size: 100px 100px;
-    animation: moveGrid 30s linear infinite alternate;
-    opacity: 0.4;
-    filter: blur(3px);
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #250045, #0a001a 80%);
+}
+
+/* Полупрозрачные движущиеся полигоны */
+.background::before,
+.background::after {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background-image:
+        linear-gradient(45deg, rgba(255,0,255,0.08) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,0,255,0.08) 25%, transparent 25%),
+        linear-gradient(135deg, rgba(255,0,255,0.08) 25%, transparent 25%),
+        linear-gradient(-135deg, rgba(255,0,255,0.08) 25%, transparent 25%);
+    background-size: 120px 120px;
+    opacity: 0.3;
+    animation: moveGrid 60s linear infinite;
+}
+
+.background::after {
+    background-image:
+        linear-gradient(60deg, rgba(255,150,255,0.05) 25%, transparent 25%),
+        linear-gradient(-60deg, rgba(255,150,255,0.05) 25%, transparent 25%);
+    animation: moveGrid 90s linear infinite reverse;
 }
 
 @keyframes moveGrid {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(-5%, -5%) rotate(1deg); }
-    100% { transform: translate(5%, 5%) rotate(-1deg); }
+    0% { transform: translate(0,0) rotate(0deg); }
+    100% { transform: translate(20%,10%) rotate(1deg); }
 }
 
-/* === Дополнительный слой с фиолетовыми пятнами === */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(circle at 20% 30%, rgba(255, 0, 255, 0.3), transparent 60%),
-        radial-gradient(circle at 80% 70%, rgba(150, 0, 255, 0.25), transparent 60%),
-        radial-gradient(circle at 50% 90%, rgba(255, 120, 255, 0.15), transparent 60%);
-    animation: moveLight 25s ease-in-out infinite alternate;
-    z-index: 0;
+/* Мягкие фиолетовые пятна */
+.background span {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(200px);
+    opacity: 0.4;
+    animation: floatLight 20s ease-in-out infinite alternate;
 }
 
-@keyframes moveLight {
-    0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
-    100% { background-position: 100% 50%, 0% 50%, 50% 100%; }
+.background span:nth-child(1) {
+    background: #ff00ff;
+    top: 10%;
+    left: -10%;
+}
+
+.background span:nth-child(2) {
+    background: #8000ff;
+    bottom: -10%;
+    right: -10%;
+}
+
+@keyframes floatLight {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(50px, -50px); }
 }
 
 /* ===== Контейнер ===== */
@@ -61,16 +82,16 @@ body::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(30, 0, 60, 0.75);
+    background: rgba(40, 0, 80, 0.8);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.25);
     backdrop-filter: blur(12px);
-    animation: fadeIn 1.2s ease-out;
+    animation: fadeIn 1s ease-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -79,17 +100,17 @@ body::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(145deg, #24004a, #3c0075);
+    background: linear-gradient(145deg, #2c0070, #440090);
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 25px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .game-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
 }
 
 /* ===== Изображения ===== */
@@ -139,5 +160,6 @@ body::after {
         padding: 10px 25px;
     }
 }
+
 
 
