@@ -17,15 +17,16 @@ html, body {
     align-items: center;
     padding: 30px;
     border-radius: 15px;
-    margin: 50px auto; /* центрирование с отступом сверху и снизу */
+    margin: 50px auto;
     box-sizing: border-box;
-    /* Убрали фоновый цвет и тень */
+    background-color: transparent; /* убрали фиолет */
+    box-shadow: none; /* убрали тень */
 }
 
 /* Изображения игр */
 .game-image {
     width: 100%;
-    max-width: 150px; /* ограничение для больших экранов */
+    max-width: 150px;
     border-radius: 15px;
     margin-bottom: 20px;
 }
@@ -33,7 +34,7 @@ html, body {
 /* Кнопки "Играть" */
 .play-button {
     width: 100%;
-    max-width: 300px; /* ограничение для больших экранов */
+    max-width: 300px;
     padding: 12px 0;
     background: linear-gradient(45deg, #ff007a, #ffa600);
     color: white;
@@ -47,6 +48,7 @@ html, body {
     cursor: pointer;
 }
 
+/* Фон кнопки не создаёт прямоугольник, только градиент */
 .play-button:hover {
     transform: scale(1.05);
 }
@@ -55,13 +57,13 @@ html, body {
 #particles-js {
     width: 100%;
     height: 100%;
-    position: absolute; /* чтобы контейнер был над фоном */
+    position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
 }
 
-/* --- Адаптив для мобильных --- */
+/* --- Адаптив --- */
 @media (max-width: 500px) {
     .container {
         padding: 20px;
@@ -77,5 +79,4 @@ html, body {
         max-width: 100%;
     }
 }
-
 
