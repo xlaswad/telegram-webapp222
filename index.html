@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <title>Lucky Jet</title>
 
-    <!-- base нужен, если используешь GitHub Pages -->
-    <base href="https://xlaswad.github.io/telegram-webapp222">
-
+    <base href="https://xlaswad.github.io/telegram-webapp222/">
     <link rel="stylesheet" href="/telegram-webapp222/css/mainpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
-        <!-- Первая игра -->
-        <img src="/telegram-webapp222/pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
-        <button class="play-button" onclick="goToGame()">ИГРАТЬ</button>
+    <div class="background"></div>
 
-        <!-- Вторая игра -->
-        <img src="/telegram-webapp222/pic/minesphoto.png" alt="Mines Game" class="game-image">
-        <button class="play-button" onclick="goToSecondGame()">ИГРАТЬ</button>
+    <div class="container">
+        <h1 class="title">🎮 Выбери игру</h1>
+
+        <div class="game-card">
+            <img src="/telegram-webapp222/pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
+            <button class="play-button" onclick="goToGame()">ИГРАТЬ</button>
+        </div>
+
+        <div class="game-card">
+            <img src="/telegram-webapp222/pic/minesphoto.png" alt="Mines Game" class="game-image">
+            <button class="play-button" onclick="goToSecondGame()">ИГРАТЬ</button>
+        </div>
     </div>
 
     <script>
         function goToGame() {
-            // Переход на первую игру
             window.location.href = "/telegram-webapp222/luckyj.html";
         }
 
         function goToSecondGame() {
-            // Здесь можно позже вставить путь ко второй игре
             window.location.href = "/telegram-webapp222/mines.html";
         }
     </script>
