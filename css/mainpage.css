@@ -1,159 +1,47 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #1e0033;
+    font-family: 'Arial', sans-serif;
     height: 100vh;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #150030;
 }
 
-/* ===== Фон ===== */
-.background {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    background: radial-gradient(circle at 50% 50%, #250045, #0a001a 80%);
-}
-
-.background::before,
-.background::after {
-    content: "";
-    position: absolute;
-    inset: -10%;
-    background-image:
-        linear-gradient(45deg, rgba(255,0,255,0.08) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(255,0,255,0.08) 25%, transparent 25%),
-        linear-gradient(135deg, rgba(255,0,255,0.08) 25%, transparent 25%),
-        linear-gradient(-135deg, rgba(255,0,255,0.08) 25%, transparent 25%);
-    background-size: 120px 120px;
-    opacity: 0.3;
-    animation: moveGrid 60s linear infinite;
-}
-
-.background::after {
-    background-image:
-        linear-gradient(60deg, rgba(255,150,255,0.05) 25%, transparent 25%),
-        linear-gradient(-60deg, rgba(255,150,255,0.05) 25%, transparent 25%);
-    animation: moveGrid 90s linear infinite reverse;
-}
-
-@keyframes moveGrid {
-    0% { transform: translate(0,0) rotate(0deg); }
-    100% { transform: translate(20%,10%) rotate(1deg); }
-}
-
-/* Мягкие пятна */
-.background span {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(200px);
-    opacity: 0.4;
-    animation: floatLight 20s ease-in-out infinite alternate;
-}
-
-.background span:nth-child(1) {
-    background: #ff00ff;
-    top: 10%;
-    left: -10%;
-}
-
-.background span:nth-child(2) {
-    background: #8000ff;
-    bottom: -10%;
-    right: -10%;
-}
-
-@keyframes floatLight {
-    0% { transform: translate(0,0); }
-    100% { transform: translate(50px, -50px); }
-}
-
-/* ===== Контейнер игр ===== */
-.games {
-    position: relative;
-    z-index: 1;
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-    padding: 40px;
-    background: rgba(40, 0, 80, 0.6);
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(255, 0, 255, 0.25);
-    backdrop-filter: blur(10px);
-}
-
-/* ===== Карточки игр ===== */
-.game-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(145deg, #2c0070, #440090);
+    background-color: #2a0055;
+    padding: 30px;
     border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(255, 0, 255, 0.25);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-.game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
-}
-
-/* ===== Изображения ===== */
 .game-image {
-    width: 180px;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
+    width: 150px; /* уменьшено в 2 раза */
+    max-width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
 }
 
-.game-card:hover .game-image {
-    transform: scale(1.05);
-}
-
-/* ===== Кнопки ===== */
 .play-button {
-    padding: 12px 35px;
+    padding: 12px 30px;
     background: linear-gradient(45deg, #ff007a, #ffa600);
     color: white;
     font-size: 18px;
     font-weight: bold;
-    border: none;
+    text-decoration: none;
     border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 0, 122, 0.4);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+    margin-bottom: 30px;
 }
 
 .play-button:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
+    transform: scale(1.05);
 }
-
-/* ===== Адаптивность ===== */
-@media (max-width: 600px) {
-    .games {
-        width: 90%;
-        padding: 25px;
-    }
-
-    .game-image {
-        width: 140px;
-    }
-
-    .play-button {
-        font-size: 16px;
-        padding: 10px 25px;
-    }
-}
-
 
 
 
