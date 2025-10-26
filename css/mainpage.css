@@ -42,6 +42,15 @@ body {
 .play-button:hover {
     transform: scale(1.05);
 }
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* чтобы контейнер был за контентом */
+    background: radial-gradient(circle at center, #1e0033 0%, #000 100%);
+}
 
 
 
