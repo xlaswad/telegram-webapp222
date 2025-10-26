@@ -29,6 +29,32 @@
             window.location.href = "mines.html";
         }
     </script>
+    <script>
+const bg = document.querySelector('.background');
+const colors = ['#ff00ff', '#a000ff', '#00ffff', '#ff0099', '#ff6600'];
+const shapes = [
+  'circle(50%)',
+  'polygon(50% 0%, 100% 100%, 0% 100%)',
+  'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+  'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)'
+];
+
+function createShape() {
+  const el = document.createElement('div');
+  el.classList.add('shape');
+  const size = Math.random() * 80 + 30 + 'px';
+  el.style.setProperty('--size', size);
+  el.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+  el.style.setProperty('--shape', shapes[Math.floor(Math.random() * shapes.length)]);
+  el.style.left = Math.random() * 100 + '%';
+  el.style.animationDuration = (8 + Math.random() * 6) + 's';
+  bg.appendChild(el);
+  setTimeout(() => el.remove(), 10000);
+}
+
+setInterval(createShape, 500);
+</script>
+
 </body>
 </html>
 
