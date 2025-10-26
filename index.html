@@ -58,6 +58,19 @@ particlesJS('particles-js', {
   "retina_detect": true
 });
 </script>
+    <script>
+function setParticlesHeight() {
+    const particles = document.getElementById('particles-js');
+    particles.style.height = window.innerHeight + 'px';
+    particles.style.width = window.innerWidth + 'px';
+}
+
+// Установить высоту при загрузке
+setParticlesHeight();
+
+// Обновлять при изменении размера окна
+window.addEventListener('resize', setParticlesHeight);
+</script>
 </body>
 </html>
 
