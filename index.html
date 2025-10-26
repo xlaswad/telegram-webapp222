@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <div id="particles-js"></div>
     <div class="container">
         <!-- Первая игра -->
         <img src="/telegram-webapp222/pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
@@ -32,6 +33,31 @@
             window.location.href = "/telegram-webapp222/mines.html";
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+particlesJS('particles-js', {
+  "particles": {
+    "number": { "value": 100, "density": { "enable": true, "value_area": 900 } },
+    "color": { "value": ["#8a2be2", "#ff00ff", "#bb7fff"] },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.6, "random": true, "anim": { "enable": true, "speed": 0.5, "opacity_min": 0.2 } },
+    "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.3 } },
+    "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "out_mode": "out" },
+    "line_linked": { "enable": true, "distance": 150, "color": "#8a2be2", "opacity": 0.2, "width": 1 }
+  },
+  "interactivity": {
+    "events": {
+      "onhover": { "enable": true, "mode": "grab" },
+      "onclick": { "enable": true, "mode": "push" }
+    },
+    "modes": {
+      "grab": { "distance": 200, "line_linked": { "opacity": 0.4 } },
+      "push": { "particles_nb": 3 }
+    }
+  },
+  "retina_detect": true
+});
+</script>
 </body>
 </html>
 
