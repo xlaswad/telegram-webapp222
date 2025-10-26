@@ -1,22 +1,17 @@
-/* Сброс отступов */
-body {
+/* --- Сброс стилей --- */
+html, body {
     margin: 0;
     padding: 0;
-    background-color: #1e0033;
+    height: 100%;
+    min-height: 100%;
     font-family: 'Arial', sans-serif;
-    min-height: 100vh; /* заменено height на min-height для адаптивности */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* немного смещаем контент вниз */
-    padding-top: 50px; /* отступ сверху на больших экранах */
-    position: relative;
-    overflow-x: hidden;
+    background: radial-gradient(circle at center, #1e0033 0%, #000 100%);
 }
 
 /* Контейнер с играми */
 .container {
-    width: 90%;           /* адаптивная ширина */
-    max-width: 600px;     /* ограничение на больших экранах */
+    width: 90%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,20 +19,22 @@ body {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin: 50px auto; /* центрирование с отступом сверху и снизу */
+    box-sizing: border-box;
 }
 
 /* Изображения игр */
 .game-image {
-    width: 100%;           /* подстраивается под контейнер */
-    max-width: 150px;      /* ограничение максимального размера */
+    width: 100%;
+    max-width: 150px; /* ограничение для больших экранов */
     border-radius: 15px;
     margin-bottom: 20px;
 }
 
 /* Кнопки "Играть" */
 .play-button {
-    width: 100%;                     /* кнопка растягивается под контейнер */
-    max-width: 300px;                 /* ограничение максимальной ширины */
+    width: 100%;
+    max-width: 300px; /* ограничение для больших экранов */
     padding: 12px 0;
     background: linear-gradient(45deg, #ff007a, #ffa600);
     color: white;
@@ -56,21 +53,21 @@ body {
     transform: scale(1.05);
 }
 
-/* Фон с частицами */
+/* --- Фон с частицами --- */
 #particles-js {
-    position: fixed;
+    width: 100%;
+    height: 100%;
+    position: absolute; /* чтобы контейнер был над фоном */
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* чтобы контейнер был за контентом */
-    background: radial-gradient(circle at center, #1e0033 0%, #000 100%);
+    z-index: -1;
 }
 
-/* Адаптив для мобильных */
+/* --- Адаптив для мобильных --- */
 @media (max-width: 500px) {
     .container {
         padding: 20px;
+        margin: 30px auto;
     }
 
     .game-image {
@@ -82,4 +79,4 @@ body {
         max-width: 100%;
     }
 }
-✅ Основны
+
