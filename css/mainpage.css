@@ -2,10 +2,22 @@
 html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
     height: 100%;
     min-height: 100%;
     font-family: 'Arial', sans-serif;
     background: radial-gradient(circle at center, #1e0033 0%, #000 100%);
+    overflow: hidden; /* чтобы не появлялись полосы прокрутки */
+}
+
+/* Частицы на весь экран */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 }
 
 /* Контейнер с играми */
@@ -20,7 +32,9 @@ html, body {
     margin: 50px auto;
     box-sizing: border-box;
     background-color: transparent; /* убрали фиолет */
-    box-shadow: none; /* убрали тень */
+    box-shadow: none;
+    position: relative; /* чтобы не накладывался на частицы */
+    z-index: 1;
 }
 
 /* Изображения игр */
@@ -46,21 +60,11 @@ html, body {
     margin-bottom: 30px;
     text-align: center;
     cursor: pointer;
+    border: none;
 }
 
-/* Фон кнопки не создаёт прямоугольник, только градиент */
 .play-button:hover {
     transform: scale(1.05);
-}
-
-/* --- Фон с частицами --- */
-#particles-js {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }
 
 /* --- Адаптив --- */
