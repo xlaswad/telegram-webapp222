@@ -1,47 +1,60 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #12002f;
+    overflow: hidden;
     font-family: 'Poppins', Arial, sans-serif;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    color: white;
 }
 
-/* ===== Фон с мягкой анимацией ===== */
-.background {
-    position: absolute;
-    top: 0; left: 0;
+/* ===== ФОН ===== */
+
+/* Звёздное небо */
+.stars {
+    background: #000 url("https://www.script-tutorials.com/demos/360/images/stars.png") repeat top center;
+    position: fixed;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 20%, #ff007a30, transparent),
-                radial-gradient(circle at 80% 80%, #ffa60030, transparent),
-                #12002f;
-    animation: moveBg 10s ease-in-out infinite alternate;
     z-index: 0;
+    animation: moveStars 200s linear infinite;
 }
 
-@keyframes moveBg {
-    0% { background-position: 0% 0%, 100% 100%; }
-    100% { background-position: 100% 0%, 0% 100%; }
+/* Мерцающие звёзды */
+.twinkling {
+    background: transparent url("https://www.script-tutorials.com/demos/360/images/twinkling.png") repeat top center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    animation: moveTwinkling 150s linear infinite;
+    opacity: 0.7;
 }
 
-/* ===== Основной контейнер ===== */
+@keyframes moveStars {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
+@keyframes moveTwinkling {
+    from { background-position: 0 0; }
+    to { background-position: 10000px -5000px; }
+}
+
+/* ===== Контейнер ===== */
 .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(42, 0, 85, 0.8);
+    background-color: rgba(42, 0, 85, 0.75);
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(255, 0, 122, 0.3);
-    backdrop-filter: blur(8px);
-    animation: fadeIn 1s ease-out;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1.2s ease-out;
 }
 
 @keyframes fadeIn {
@@ -49,15 +62,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.title {
-    font-size: 28px;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #ffb3e6;
-}
-
-/* ===== Карточка игры ===== */
+/* ===== Карточки игр ===== */
 .game-card {
     display: flex;
     flex-direction: column;
@@ -75,7 +80,7 @@ body {
     box-shadow: 0 0 25px rgba(255, 0, 122, 0.6);
 }
 
-/* ===== Изображение игры ===== */
+/* ===== Изображения ===== */
 .game-image {
     width: 180px;
     border-radius: 12px;
@@ -87,7 +92,7 @@ body {
     transform: scale(1.05);
 }
 
-/* ===== Кнопка ===== */
+/* ===== Кнопки ===== */
 .play-button {
     padding: 12px 35px;
     background: linear-gradient(45deg, #ff007a, #ffa600);
@@ -121,8 +126,5 @@ body {
         font-size: 16px;
         padding: 10px 25px;
     }
-
-    .title {
-        font-size: 22px;
-    }
 }
+
