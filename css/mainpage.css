@@ -7,53 +7,44 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: radial-gradient(circle at center, #2a0055 0%, #0a0015 100%);
 }
 
-/* ===== ФОН ===== */
-
-/* Звёздное небо */
-.stars {
-    background: #000 url("https://www.script-tutorials.com/demos/360/images/stars.png") repeat top center;
+/* ===== Фон (анимированный неоновый космос) ===== */
+body::before,
+body::after {
+    content: "";
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
     z-index: 0;
-    animation: moveStars 200s linear infinite;
+    background: radial-gradient(circle at 25% 25%, rgba(255, 0, 122, 0.2), transparent 60%),
+                radial-gradient(circle at 75% 75%, rgba(255, 166, 0, 0.15), transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(0, 150, 255, 0.15), transparent 60%);
+    animation: moveBg 25s linear infinite alternate;
+    filter: blur(80px);
 }
 
-/* Мерцающие звёзды */
-.twinkling {
-    background: transparent url("https://www.script-tutorials.com/demos/360/images/twinkling.png") repeat top center;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    animation: moveTwinkling 150s linear infinite;
-    opacity: 0.7;
-}
-
-@keyframes moveStars {
-    from { background-position: 0 0; }
-    to { background-position: -10000px 5000px; }
-}
-
-@keyframes moveTwinkling {
-    from { background-position: 0 0; }
-    to { background-position: 10000px -5000px; }
+@keyframes moveBg {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(10%, -10%) scale(1.2); }
+    100% { transform: translate(-10%, 10%) scale(1); }
 }
 
 /* ===== Контейнер ===== */
 .container {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(42, 0, 85, 0.75);
+    background: rgba(30, 0, 60, 0.8);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 0 40px rgba(255, 0, 122, 0.3);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(255, 0, 122, 0.25);
+    backdrop-filter: blur(12px);
     animation: fadeIn 1.2s ease-out;
 }
 
