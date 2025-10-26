@@ -1,15 +1,22 @@
+/* Сброс отступов */
 body {
     margin: 0;
     padding: 0;
     background-color: #1e0033;
     font-family: 'Arial', sans-serif;
-    height: 100vh;
+    min-height: 100vh; /* заменено height на min-height для адаптивности */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* немного смещаем контент вниз */
+    padding-top: 50px; /* отступ сверху на больших экранах */
+    position: relative;
+    overflow-x: hidden;
 }
 
+/* Контейнер с играми */
 .container {
+    width: 90%;           /* адаптивная ширина */
+    max-width: 600px;     /* ограничение на больших экранах */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,15 +26,19 @@ body {
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
+/* Изображения игр */
 .game-image {
-    width: 150px; /* уменьшено в 2 раза */
-    max-width: 100%;
+    width: 100%;           /* подстраивается под контейнер */
+    max-width: 150px;      /* ограничение максимального размера */
     border-radius: 15px;
     margin-bottom: 20px;
 }
 
+/* Кнопки "Играть" */
 .play-button {
-    padding: 12px 30px;
+    width: 100%;                     /* кнопка растягивается под контейнер */
+    max-width: 300px;                 /* ограничение максимальной ширины */
+    padding: 12px 0;
     background: linear-gradient(45deg, #ff007a, #ffa600);
     color: white;
     font-size: 18px;
@@ -37,11 +48,15 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     transition: transform 0.2s ease;
     margin-bottom: 30px;
+    text-align: center;
+    cursor: pointer;
 }
 
 .play-button:hover {
     transform: scale(1.05);
 }
+
+/* Фон с частицами */
 #particles-js {
     position: fixed;
     top: 0;
@@ -52,5 +67,19 @@ body {
     background: radial-gradient(circle at center, #1e0033 0%, #000 100%);
 }
 
+/* Адаптив для мобильных */
+@media (max-width: 500px) {
+    .container {
+        padding: 20px;
+    }
 
+    .game-image {
+        max-width: 120px;
+    }
 
+    .play-button {
+        font-size: 16px;
+        max-width: 100%;
+    }
+}
+✅ Основны
