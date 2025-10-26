@@ -2,35 +2,31 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Lucky Jet</title>
-
-    <base href="https://xlaswad.github.io/telegram-webapp222/">
-    <link rel="stylesheet" href="/telegram-webapp222/css/mainpage.css">
+    <title>Игры</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mainpage.css">
 </head>
 <body>
-    <!-- Новый фиолетовый геометрический фон -->
     <div class="background"></div>
 
-    <div class="container">
+    <div class="games">
         <div class="game-card">
-            <img src="/telegram-webapp222/pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
+            <img src="pic/photolucky.jpg" alt="Lucky Jet" class="game-image">
             <button class="play-button" onclick="goToGame()">ИГРАТЬ</button>
         </div>
 
         <div class="game-card">
-            <img src="/telegram-webapp222/pic/minesphoto.png" alt="Mines Game" class="game-image">
+            <img src="pic/minesphoto.png" alt="Mines" class="game-image">
             <button class="play-button" onclick="goToSecondGame()">ИГРАТЬ</button>
         </div>
     </div>
 
     <script>
         function goToGame() {
-            window.location.href = "/telegram-webapp222/luckyj.html";
+            window.location.href = "luckyj.html";
         }
-
         function goToSecondGame() {
-            window.location.href = "/telegram-webapp222/mines.html";
+            window.location.href = "mines.html";
         }
     </script>
 </body>
