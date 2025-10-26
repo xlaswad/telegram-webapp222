@@ -15,12 +15,11 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #2a0055;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
     margin: 50px auto; /* центрирование с отступом сверху и снизу */
     box-sizing: border-box;
+    /* Убрали фоновый цвет и тень */
 }
 
 /* Изображения игр */
@@ -42,7 +41,6 @@ html, body {
     font-weight: bold;
     text-decoration: none;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     transition: transform 0.2s ease;
     margin-bottom: 30px;
     text-align: center;
@@ -79,4 +77,5 @@ html, body {
         max-width: 100%;
     }
 }
+
 
